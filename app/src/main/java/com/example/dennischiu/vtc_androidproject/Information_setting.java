@@ -1,0 +1,13 @@
+package com.example.dennischiu.vtc_androidproject;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class Information_setting extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_information_setting);
+    }
+}

@@ -1,2 +1,0 @@
-# androidVTC
-competition

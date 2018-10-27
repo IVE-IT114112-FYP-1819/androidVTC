@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Vtc_Android</string>
-
+    <string name="app_name">VTC_AndroidProject</string>
     <string name="firstPage_In">In</string>
     <string name="firstPage_apps_information">Apps Information</string>
 

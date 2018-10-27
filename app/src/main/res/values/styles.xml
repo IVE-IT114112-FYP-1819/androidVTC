@@ -15,4 +15,10 @@
     </style>
 
     <style name="AppTheme.Status" parent="AppTheme_noBar" />
+
+    <style name="AppTheme.Info" parent="AppTheme_noBar" >
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
+        <item name="colorAccent">@android:color/white</item>
+    </style>
 </resources>

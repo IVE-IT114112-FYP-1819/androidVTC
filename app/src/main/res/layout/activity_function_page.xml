@@ -4,173 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Function_page">
+    android:background="@color/orange"
+    tools:context=".Finger.Function_page">
 
     <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="202dp"
-        android:layout_height="117dp"
+        android:id="@+id/fingerprintImage"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="true"
-        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="90dp"
+        android:src="@mipmap/finger"
         app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/tv_function1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:text="Finger Print"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fingerprintImage" />
+
+    <TextView
+        android:id="@+id/paraLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="Place Your Finger"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_subheading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_function1" />
+
+    <TextView
+        android:id="@+id/tv_Skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:text="Skip"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_subheading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="20dp"
+        android:text="Next"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_subheading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/dark_grey"
-        app:layout_constraintBottom_toTopOf="@id/function_1"
+        android:layout_height="3dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@id/tv_description"
+        app:layout_constraintBottom_toTopOf="@id/tv_next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/line_4"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/function_1"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toStartOf="@id/function_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo">
-
-        <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="160dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/iv_function_icon"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:src="@mipmap/clock_button" />
-
-            <TextView
-                android:id="@+id/tv_function_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="@string/function_page_alarm"
-                android:textColor="@color/black_text_color"
-                android:textSize="@dimen/spacing_large" />
-
-        </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/function_2"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/function_1"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo">
-
-        <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="160dp"
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/iv_function_icon1"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:src="@mipmap/finger" />
-
-            <TextView
-                android:id="@+id/tv_function_name1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="@string/function_page_finger"
-                android:textColor="@color/black_text_color"
-                android:textSize="@dimen/spacing_large" />
-
-        </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/function_3"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toStartOf="@id/function_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/function_1">
-
-        <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="160dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/iv_function_icon2"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:src="@mipmap/clock_button" />
-
-            <TextView
-                android:id="@+id/tv_function_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="fjiwekf wksmdo"
-                android:textColor="@color/black_text_color"
-                android:textSize="@dimen/spacing_large" />
-
-        </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
-    <View
-        android:id="@+id/line_5"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/dark_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/function_3" />
-
-
-    <View
-        android:id="@+id/line_1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/dark_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/function_1" />
-
-    <View
-        android:id="@+id/line_4"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/dark_grey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/function_2"
-        app:layout_constraintStart_toStartOf="@id/function_1"
-        app:layout_constraintTop_toTopOf="@id/function_1" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
