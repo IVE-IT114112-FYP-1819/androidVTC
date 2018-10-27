@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vtc_Android</string>
+
+    <string name="firstPage_In">In</string>
+    <string name="firstPage_apps_information">Apps Information</string>
+
+    <string name="function_page_alarm">Alarm Clock</string>
+    <string name="function_page_finger">Finger</string>
+</resources>
