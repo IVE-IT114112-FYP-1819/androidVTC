@@ -21,7 +21,7 @@ public class Second_page extends AppCompatActivity {
 
         mTextView_Skip.setOnClickListener(v->{
             Intent intent = new Intent();
-            intent.setClass(Second_page.this,Third_page.class);
+            intent.setClass(Second_page.this,Information_setting.class);
             startActivity(intent);
         });
 

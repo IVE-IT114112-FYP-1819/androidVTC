@@ -1,6 +1,7 @@
 package com.example.dennischiu.vtc_androidproject.Finger;
 
 
+import com.example.dennischiu.vtc_androidproject.Information_setting;
 import com.example.dennischiu.vtc_androidproject.R;
 import com.example.dennischiu.vtc_androidproject.Second_page;
 
@@ -62,7 +63,7 @@ public class Function_page extends AppCompatActivity {
 
         mTextView_Skip.setOnClickListener(v->{
             Intent intent = new Intent();
-            intent.setClass(Function_page.this,Second_page.class);
+            intent.setClass(Function_page.this,Information_setting.class);
             startActivity(intent);
         });
 
