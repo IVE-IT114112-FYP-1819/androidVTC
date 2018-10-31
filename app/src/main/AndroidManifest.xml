@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:allowBackup="true"
@@ -15,16 +17,20 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".Finger.Function_page"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Status" />
+
         <activity android:name=".TimePicker.MainTimePicker" />
 
         <receiver android:name=".TimePicker.AlertReceiver" />
@@ -33,6 +39,7 @@
             android:name=".Second_page"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Status" />
+
         <activity
             android:name=".Third_page"
             android:screenOrientation="portrait"
@@ -42,6 +49,26 @@
             android:name=".Information_setting"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Info" />
+
+
+        <activity android:name=".alert.SetAlarm"/>
+
+        <receiver android:name=".alert.AlarmReceiver">
+            <intent-filter>
+                <action android:name="activity_app" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".alert.BootUpReceiver"
+            android:enabled="false">
+            //官方建議先設false要用時再true
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".alert.CalActivity"></activity>
+
     </application>
 
 </manifest>
