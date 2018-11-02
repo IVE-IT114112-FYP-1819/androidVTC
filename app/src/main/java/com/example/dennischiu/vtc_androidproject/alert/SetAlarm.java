@@ -54,7 +54,8 @@ public class SetAlarm extends AppCompatActivity {
                 cal.add(Calendar.HOUR, hourSet);
                 cal.add(Calendar.MINUTE, minSet);
                 cal.set(Calendar.SECOND, 0);
-                add_alarm(SetAlarm.this, cal);        //註冊鬧鐘
+                add_alarm(SetAlarm.this, cal); //註冊鬧鐘
+                finish();
             }
         });
 

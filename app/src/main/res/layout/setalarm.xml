@@ -3,26 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SetAlarm">
-
-
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_large"
+    android:padding="13dp"
+    android:orientation="horizontal"
+    tools:context=".alert.SetAlarm">
 
     <NumberPicker
         android:id="@+id/hour_numberPicker"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         ></NumberPicker>
 
     <NumberPicker
         android:id="@+id/mins_numberPicker"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content"></NumberPicker>
 
     <Button
         android:id="@+id/setTime_button"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content"
         android:text="SET"/>
 

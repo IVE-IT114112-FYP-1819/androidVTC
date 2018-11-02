@@ -1,5 +1,8 @@
 package com.example.dennischiu.vtc_androidproject;
 
+import com.example.dennischiu.vtc_androidproject.alert.SetAlarm;
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,51 +14,56 @@ import android.widget.TextView;
 
 public class Information_setting extends AppCompatActivity {
 
-    EditText mEditText_firstname;
-    EditText mEditText_lastname;
-    EditText mEditText_phone;
-    ImageButton mButton_save;
+    EditText mEditText_Firstname;
+    EditText mEditText_Lastname;
+    EditText mEditText_Phone;
+    ImageButton mButton_Save;
+    ImageButton mSetAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_setting);
 
+        mEditText_Firstname = findViewById(R.id.et_firstname);
+        mEditText_Lastname = findViewById(R.id.et_lastname);
+        mEditText_Phone = findViewById(R.id.et_phone);
+        mButton_Save = findViewById(R.id.btn_save);
+        mSetAlert = findViewById(R.id.ib_setAlert);
 
-        mEditText_firstname = findViewById(R.id.et_firstname);
-        mEditText_lastname = findViewById(R.id.et_lastname);
-        mEditText_phone = findViewById(R.id.et_phone);
-        mButton_save = findViewById(R.id.btn_save);
+        String firstname = getSharedPreferences("Information", MODE_PRIVATE)
+                .getString("firstname", "");
+        mEditText_Firstname.setText(firstname);
 
-        String firstname = getSharedPreferences("Information",MODE_PRIVATE)
-                .getString("firstname","");
-        mEditText_firstname.setText( firstname );
+        String lastname = getSharedPreferences("Information", MODE_PRIVATE)
+                .getString("lastname", "");
+        mEditText_Lastname.setText(lastname);
 
-        String lastname = getSharedPreferences("Information",MODE_PRIVATE)
-                .getString("lastname","");
-        mEditText_lastname.setText( lastname );
+        String phone = getSharedPreferences("Information", MODE_PRIVATE)
+                .getString("phone", "");
+        mEditText_Phone.setText(phone);
 
-        String phone = getSharedPreferences("Information",MODE_PRIVATE)
-                .getString("phone","");
-        mEditText_phone.setText( phone );
-
-        mButton_save.setOnClickListener(new View.OnClickListener() {
+        mButton_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String firstname= mEditText_firstname.getText().toString().trim();
-                String lastname= mEditText_lastname.getText().toString().trim();
-                String phone= mEditText_phone.getText().toString().trim();
+                String firstname = mEditText_Firstname.getText().toString().trim();
+                String lastname = mEditText_Lastname.getText().toString().trim();
+                String phone = mEditText_Phone.getText().toString().trim();
                 SharedPreferences pref = getSharedPreferences("Information", MODE_PRIVATE);
                 pref.edit()
-                        .putString("firstname",firstname)
-                        .putString("lastname",lastname)
-                        .putString("phone", phone)
-                        .commit();
+                    .putString("firstname", firstname)
+                    .putString("lastname", lastname)
+                    .putString("phone", phone)
+                    .commit();
 
             }
         });
 
+        mSetAlert.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SetAlarm.class);
+            startActivity(intent);
+        });
 
 
     }
