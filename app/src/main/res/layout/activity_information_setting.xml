@@ -7,7 +7,6 @@
     android:background="@color/light_grey"
     tools:context=".Information_setting">
 
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -26,12 +25,11 @@
 
     </android.support.v7.widget.Toolbar>
 
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:layout_marginTop="70dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -42,8 +40,8 @@
             android:layout_width="0dp"
             android:layout_height="367dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
             android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +68,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/spacing_normal"
                 android:textColor="@color/dark_grey"
-                android:textColorHint="@color/dark_grey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/tv_login_username_title"
@@ -96,7 +94,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/spacing_normal"
                 android:textColor="@color/dark_grey"
-                android:textColorHint="@color/dark_grey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/tv_login_password_title"
@@ -120,27 +118,27 @@
                 android:background="@color/light_grey"
                 android:hint="Phone Number"
                 android:inputType="phone"
+                android:maxLength="8"
                 android:maxLines="1"
                 android:padding="@dimen/spacing_normal"
                 android:textColor="@color/dark_grey"
-                android:textColorHint="@color/dark_grey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/text_body"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/tv_phone"
-                tools:text="111111111" />
-
+                tools:text="12345678" />
 
             <TextView
                 android:id="@+id/tv_remind"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:text="Remind Type"
-                android:textColor="@color/flower_blue1"
-                android:textSize="@dimen/text_body"
+                android:textColor="@color/flower_blue"
+                android:textSize="@dimen/text_subheading"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+                app:layout_constraintTop_toBottomOf="@+id/error_message" />
 
             <ImageButton
                 android:id="@+id/ib_setAlert"
@@ -152,14 +150,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_remind" />
 
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Please input"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_body"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/et_phone"
+                tools:visibility="visible" />
 
         </android.support.constraint.ConstraintLayout>
 
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="20dp"
             android:background="@mipmap/setting"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,8 +179,8 @@
             android:id="@+id/btn_save"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="20dp"
             android:background="@mipmap/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,8 +191,8 @@
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="20dp"
             android:background="@mipmap/more1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraint_layout"
