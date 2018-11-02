@@ -19,11 +19,12 @@ import android.widget.TextView;
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
     private Context mContext;
+    private Function_page mFunction_page;
 
-    public FingerprintHandler(Context context) {
+    public FingerprintHandler(Context context, Function_page function_page) {
         this.mContext = context;
+        this.mFunction_page = function_page;
     }
-
 
 
     public void startAuth(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject) {
@@ -63,6 +64,8 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         } else{
             paraLabel.setTextColor(ContextCompat.getColor(mContext, R.color.black_alpha));
             imageView.setImageResource(R.mipmap.action_done);
+            mFunction_page.startActivity(); //here
+
         }
     }
 }

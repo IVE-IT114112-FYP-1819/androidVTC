@@ -60,19 +60,17 @@ public class Function_page extends AppCompatActivity {
         mTextView_Skip = findViewById(R.id.tv_Skip);
         mTextView_Next = findViewById(R.id.tv_next);
 
-
-        mTextView_Skip.setOnClickListener(v->{
+        mTextView_Skip.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.setClass(Function_page.this,Information_setting.class);
+            intent.setClass(Function_page.this, Information_setting.class);
             startActivity(intent);
         });
 
-        mTextView_Next.setOnClickListener(v->{
+        mTextView_Next.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.setClass(Function_page.this,Second_page.class);
+            intent.setClass(Function_page.this, Second_page.class);
             startActivity(intent);
         });
-
 
         mFingerprintImage = (ImageView) findViewById(R.id.fingerprintImage);
 
@@ -114,13 +112,12 @@ public class Function_page extends AppCompatActivity {
                 if (cipherInit()) {
 
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
+                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this,this);
                     fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
 
                 }
 
             }
-
 
         }
 
@@ -145,8 +142,6 @@ public class Function_page extends AppCompatActivity {
                                               KeyProperties.ENCRYPTION_PADDING_PKCS7)
                                       .build());
             keyGenerator.generateKey();
-
-
 
         } catch (KeyStoreException | IOException | CertificateException
                 | NoSuchAlgorithmException | InvalidAlgorithmParameterException
@@ -187,6 +182,12 @@ public class Function_page extends AppCompatActivity {
             throw new RuntimeException("Failed to init Cipher", e);
         }
 
+    }
+
+    public void startActivity() {
+        Intent intent = new Intent();
+        intent.setClass(Function_page.this, Information_setting.class);
+        startActivity(intent);
     }
 
 
