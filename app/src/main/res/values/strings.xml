@@ -7,4 +7,6 @@
     <string name="function_page_finger">Finger</string>
 
     <string name="login_error_message">Input success</string>
+
+    <string name="Alarm_settings">The Alarm has been set</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.dennischiu.vtc_androidproject.alert;
 
+import com.example.dennischiu.vtc_androidproject.Information_setting;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +27,7 @@ public class BootUpReceiver extends BroadcastReceiver {
             for(int i = 0; i < 10; i++){
                 cal.add(Calendar.MINUTE, 1);    //加一分鐘
                 cal.set(Calendar.SECOND, 0);    //設定秒數為0
-                SetAlarm.add_alarm(context, cal);        //註冊鬧鐘
+                Information_setting.add_alarm(context, cal);        //註冊鬧鐘
             }
         }
     }

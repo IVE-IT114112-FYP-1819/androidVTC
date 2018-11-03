@@ -30,7 +30,7 @@ public class SetAlarm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setalarm);
+        setContentView(R.layout.dialog_alert);
 
         setTime_button = (Button) findViewById(R.id.setTime_button);
         hour_numberPicker = (NumberPicker) findViewById(R.id.hour_numberPicker);
@@ -58,10 +58,6 @@ public class SetAlarm extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
 
         ComponentName receiver = new ComponentName(this, BootUpReceiver.class);
         PackageManager pm = this.getPackageManager();

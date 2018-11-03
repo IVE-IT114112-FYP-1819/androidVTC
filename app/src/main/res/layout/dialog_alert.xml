@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_large"
+    android:padding="13dp"
+    android:orientation="horizontal"
+    tools:context=".Information_setting">
+
+    <NumberPicker
+        android:id="@+id/hour_numberPicker"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"/>
+
+    <NumberPicker
+        android:id="@+id/mins_numberPicker"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp" />
+
+    <Button
+        android:id="@+id/setTime_button"
+        android:layout_gravity="center_vertical"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:text="SET" />
+
+</LinearLayout>
