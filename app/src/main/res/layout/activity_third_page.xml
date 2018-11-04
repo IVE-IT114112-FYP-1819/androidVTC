@@ -27,6 +27,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:text="function3 name"
+        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_title_big"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
         android:layout_marginTop="40dp"
         android:text="function description"
         android:textColor="@color/light_grey"
+        android:textStyle="bold"
         android:textSize="@dimen/text_subheading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,10 +55,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="80dp"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:text="Skip"
         android:textColor="@color/light_grey"
-        android:textSize="@dimen/text_subheading"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -69,8 +72,9 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="20dp"
         android:text="Next"
+        android:textStyle="bold"
         android:textColor="@color/light_grey"
-        android:textSize="@dimen/text_subheading"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

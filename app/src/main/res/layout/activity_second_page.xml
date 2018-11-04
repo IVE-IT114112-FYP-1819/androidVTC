@@ -27,6 +27,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:text="function2 name"
+        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_title_big"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +43,7 @@
         android:text="function description"
         android:textColor="@color/light_grey"
         android:textSize="@dimen/text_subheading"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_function2" />
@@ -55,8 +57,9 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
         android:text="Skip"
+        android:textStyle="bold"
         android:textColor="@color/light_grey"
-        android:textSize="@dimen/text_subheading"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -69,8 +72,9 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="20dp"
         android:text="Next"
+        android:textStyle="bold"
         android:textColor="@color/light_grey"
-        android:textSize="@dimen/text_subheading"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

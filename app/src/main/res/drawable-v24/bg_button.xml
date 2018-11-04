@@ -5,13 +5,13 @@
     <corners android:radius="15dp"/>
 
     <gradient
-        android:endColor="@color/pink"
+        android:endColor="#64b7ed"
         android:startColor="@color/flower_blue" />
 
     <padding
-        android:bottom="@dimen/spacing_normal"
-        android:left="@dimen/spacing_normal"
-        android:right="@dimen/spacing_normal"
-        android:top="@dimen/spacing_normal" />
+        android:bottom="@dimen/spacing_large"
+        android:left="@dimen/spacing_large"
+        android:right="@dimen/spacing_large"
+        android:top="@dimen/spacing_large" />
 
 </shape>

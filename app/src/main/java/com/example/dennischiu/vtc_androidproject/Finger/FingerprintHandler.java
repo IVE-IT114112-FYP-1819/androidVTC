@@ -29,40 +29,40 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     public void startAuth(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject) {
         CancellationSignal cancellationSignal = new CancellationSignal();
-        fingerprintManager.authenticate(cryptoObject, cancellationSignal , 0, this, null);
+        fingerprintManager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
     }
 
     @Override
     public void onAuthenticationError(int errorCode, CharSequence errString) {
-        this.update("There was an Auth Error " + errString,false);
+        this.update("There was an Auth Error " + errString, false);
     }
 
     @Override
     public void onAuthenticationFailed() {
-        this.update("Auth Failed. " , false);
+        this.update("Auth Failed.Please try again ", false);
     }
 
     @Override
     public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
-        this.update("Error: " + helpString,false);
+        this.update("Error: " + helpString, false);
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-        this.update("You can now access the app. ",  true);
+        this.update("You can now access the app. ", true);
     }
 
     private void update(String s, boolean b) {
-        TextView paraLabel = (TextView)((Activity)mContext).findViewById(R.id.paraLabel);
-        ImageView imageView = (ImageView) ((Activity)mContext).findViewById(R.id.fingerprintImage);
+        TextView paraLabel = (TextView) ((Activity) mContext).findViewById(R.id.paraLabel);
+        ImageView imageView = (ImageView) ((Activity) mContext).findViewById(R.id.fingerprintImage);
 
         paraLabel.setText(s);
-        if(b==false){
+        if (b == false) {
 
-            paraLabel.setTextColor(ContextCompat.getColor(mContext,R.color.flower_blue));
+            paraLabel.setTextColor(ContextCompat.getColor(mContext, R.color.red));
 
-        } else{
-            paraLabel.setTextColor(ContextCompat.getColor(mContext, R.color.black_alpha));
+        } else {
+            paraLabel.setTextColor(ContextCompat.getColor(mContext, R.color.white));
             imageView.setImageResource(R.mipmap.action_done);
             mFunction_page.startActivity(); //here
 

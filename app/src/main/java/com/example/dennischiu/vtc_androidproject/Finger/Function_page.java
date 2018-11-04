@@ -97,7 +97,7 @@ public class Function_page extends AppCompatActivity {
 
             } else if (!keyguardManager.isKeyguardSecure()) {
 
-                mParaLabel.setText("Add Lock to your Phone in Settings");
+                mParaLabel.setText("Add Lock To Your Phone in Settings");
 
             } else if (!fingerprintManager.hasEnrolledFingerprints()) {
 
