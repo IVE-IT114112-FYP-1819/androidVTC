@@ -6,17 +6,26 @@ import com.example.dennischiu.vtc_androidproject.alert.SetAlarm;
 
 import org.w3c.dom.Text;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,11 +55,38 @@ public class Information_setting extends AppCompatActivity {
     NumberPicker hour_numberPicker, mins_numberPicker;
     int hourSet, minSet;
 
-    @Override
+    private static final int LOCATION_UPDATE_MIN_DISTANCE = 1000;
+    private static final int LOCATION_UPDATE_MIN_TIME = 50;
+    private LocationManager mLocationManager;
+    private String messages;
 
+    private LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            if (location != null) {
+                messages = "https://www.google.com/maps/search/" + location.getLatitude() + "," + location.getLongitude();
+            } else {
+                Log.d("Test", "Location is null");
+                messages = "Can't get lcation";
+            }
+        }
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+        }
+        @Override
+        public void onProviderEnabled(String p) {
+        }
+        @Override
+        public void onProviderDisabled(String s) {
+        }
+    };
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_setting);
+
 
         mEditText_firstname = findViewById(R.id.et_firstname);
         mEditText_lastname = findViewById(R.id.et_lastname);
@@ -59,56 +95,76 @@ public class Information_setting extends AppCompatActivity {
         mDialogAlert = findViewById(R.id.btn_dialog_setAlarm);
         mErrorMessage = findViewById(R.id.error_message);
 
-        String firstname = getSharedPreferences("Information", MODE_PRIVATE)
-                .getString("firstname", "");
+        SharedPreferences informotion = getSharedPreferences("Information", MODE_PRIVATE);
+                String firstname = informotion.getString("firstname", "");
+                String lastname = informotion.getString("lastname", "");
+                String phone = informotion.getString("phone", "");
         mEditText_firstname.setText(firstname);
-
-        String lastname = getSharedPreferences("Information", MODE_PRIVATE)
-                .getString("lastname", "");
         mEditText_lastname.setText(lastname);
-
-        String phone = getSharedPreferences("Information", MODE_PRIVATE)
-                .getString("phone", "");
         mEditText_phone.setText(phone);
+
+
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        requestPermission();
+
 
         mButton_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditText_firstname.getText().length() == 0) {
-                    mErrorMessage.setVisibility(View.VISIBLE);
-                    mErrorMessage.setText("Please Enter Your FirstName");
-                } else if (mEditText_lastname.getText().length() == 0) {
-                    mErrorMessage.setVisibility(View.VISIBLE);
-                    mErrorMessage.setText("Please Enter Your LastName");
-                } else if (mEditText_phone.getText().length() == 0) {
-                    mErrorMessage.setVisibility(View.VISIBLE);
-                    mErrorMessage.setText("Please Enter Your PhoneNumber");
-                } else {
 
-                    String firstname = mEditText_firstname.getText().toString().trim();
-                    String lastname = mEditText_lastname.getText().toString().trim();
-                    String phone = mEditText_phone.getText().toString().trim();
-                    SharedPreferences pref = getSharedPreferences("Information", MODE_PRIVATE);
-                    pref.edit()
-                        .putString("firstname", firstname)
-                        .putString("lastname", lastname)
-                        .putString("phone", phone)
-                        .commit();
-
-                    mErrorMessage.setVisibility(View.INVISIBLE);
-                    Toast.makeText(Information_setting.this, R.string.Information_input, Toast.LENGTH_SHORT)
-                         .show();
+                inputInformationCheck();
+                if(phone.equals("")){
+                    Toast.makeText(getApplicationContext(), "send sms unfinished", Toast.LENGTH_SHORT).show();
+                }else {
+                    sendSMS(phone);
+                    Toast.makeText(getApplicationContext(), "send sms finished", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         mDialogAlert.setOnClickListener(v -> {
-            dialog();
+            SetAlertdialog();
         });
 
     }
 
+    public void inputInformationCheck(){
+        if (mEditText_firstname.getText().length() == 0) {
+            mErrorMessage.setVisibility(View.VISIBLE);
+            mErrorMessage.setText("Please Enter Your FirstName");
+        } else if (mEditText_lastname.getText().length() == 0) {
+            mErrorMessage.setVisibility(View.VISIBLE);
+            mErrorMessage.setText("Please Enter Your LastName");
+        } else if (mEditText_phone.getText().length() == 0) {
+            mErrorMessage.setVisibility(View.VISIBLE);
+            mErrorMessage.setText("Please Enter Your PhoneNumber");
+        } else {
+
+            String firstname = mEditText_firstname.getText().toString().trim();
+            String lastname = mEditText_lastname.getText().toString().trim();
+            String phone = mEditText_phone.getText().toString().trim();
+            SharedPreferences pref = getSharedPreferences("Information", MODE_PRIVATE);
+            pref.edit()
+                    .putString("firstname", firstname)
+                    .putString("lastname", lastname)
+                    .putString("phone", phone)
+                    .commit();
+
+            mErrorMessage.setVisibility(View.INVISIBLE);
+            Toast.makeText(Information_setting.this, R.string.Information_input, Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
+    public void sendSMS(String phone){
+        String number = phone;
+        SmsManager smsManager = SmsManager.getDefault();
+        getCurrentLocation();
+        if(ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED && !number.isEmpty() ){
+            smsManager.sendTextMessage(number,null,messages+"",null,null);
+        }
+    }
     @SuppressLint("SetTextI18n")
-    public void dialog() {
+    public void SetAlertdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 Information_setting.this);
 
@@ -204,6 +260,53 @@ public class Information_setting extends AppCompatActivity {
 
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         am.cancel(pi);    //取消鬧鐘，只差在這裡
+    }
+
+    private void requestPermission() {
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS};
+        ActivityCompat.requestPermissions(this,permissions, 1);
+        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable( false );
+            builder.setTitle("Prompt")
+                    .setMessage("Please open location")
+                    .setPositiveButton("GO to setting", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivityForResult(intent, 0);
+                        }
+                    })
+                    .show();
+        } else {
+            Log.d("Test", "Location is opening");
+        }
+    }
+
+    private void getCurrentLocation() {
+        boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        Location location = null;
+        if (!isGPSEnabled) {
+            Log.d("Test", "Location do not open");
+        } else if (isGPSEnabled) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_UPDATE_MIN_TIME, LOCATION_UPDATE_MIN_DISTANCE, mLocationListener);
+            location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        }
+        if (location != null) {
+            messages = "https://www.google.com/maps/search/" + location.getLatitude() + "," + location.getLongitude();
+        } else {
+            Log.d("Test", "Location is null");
+            messages = "Can't get lcation";
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        requestPermission();
     }
 }
 
