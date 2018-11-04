@@ -105,7 +105,7 @@ public class Function_page extends AppCompatActivity {
 
             } else {
 
-                mParaLabel.setText("Place your Finger on Scanner to Access the apps");
+                mParaLabel.setText("Lift and rest your finger on the home button");
 
                 generateKey();
 
