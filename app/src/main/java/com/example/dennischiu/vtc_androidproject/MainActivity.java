@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonToFunction.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.setClass(MainActivity.this, Function_page.class);
+            intent.setClass(MainActivity.this, Information_setting.class);
             startActivity(intent);
         });
 

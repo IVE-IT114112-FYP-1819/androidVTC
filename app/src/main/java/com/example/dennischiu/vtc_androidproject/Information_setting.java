@@ -126,7 +126,7 @@ public class Information_setting extends AppCompatActivity {
                 if (mEditText_phone.getText().length() == 8 && mEditText_firstname.getText().length() != 0
                         && mEditText_lastname.getText().length() != 0) {
 
-                    Toast.makeText(getApplicationContext(), "send sms finished", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Save Success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -140,7 +140,7 @@ public class Information_setting extends AppCompatActivity {
         });
 
         Intent intentAnswer = getIntent();
-        boolean running = intentAnswer.getBooleanExtra("answer", false);
+        boolean running = intentAnswer.getBooleanExtra("answer",false);
         if(running){
             SetAlertdialog();
         }

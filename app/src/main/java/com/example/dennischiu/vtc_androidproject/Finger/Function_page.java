@@ -3,6 +3,7 @@ package com.example.dennischiu.vtc_androidproject.Finger;
 
 import com.example.dennischiu.vtc_androidproject.Information_setting;
 import com.example.dennischiu.vtc_androidproject.R;
+import com.example.dennischiu.vtc_androidproject.alert.CalActivity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -184,7 +185,7 @@ public class Function_page extends AppCompatActivity {
 
     public void startActivity() {
         Intent intent = new Intent();
-        intent.setClass(Function_page.this, Information_setting.class);
+        intent.setClass(Function_page.this, CalActivity.class);
         startActivity(intent);
     }
 

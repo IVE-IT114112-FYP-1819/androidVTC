@@ -5,29 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_large"
+    android:orientation="vertical"
     android:padding="13dp"
-    android:orientation="horizontal"
     tools:context=".Information_setting">
 
-    <NumberPicker
-        android:id="@+id/hour_numberPicker"
-        android:layout_width="80dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"/>
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Alarm"
+        android:textColor="@color/black_text_color"
+        android:textSize="@dimen/text_headline"
+        android:textStyle="bold" />
 
-    <NumberPicker
-        android:id="@+id/mins_numberPicker"
-        android:layout_width="80dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp" />
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Hour"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <NumberPicker
+                android:id="@+id/hour_numberPicker"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=":"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Minutes"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <NumberPicker
+                android:id="@+id/mins_numberPicker"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/setTime_button"
-        android:layout_gravity="center_vertical"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:text="SET" />
+        android:background="#00000000"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="SET"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

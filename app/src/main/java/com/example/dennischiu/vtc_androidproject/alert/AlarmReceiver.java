@@ -1,5 +1,7 @@
 package com.example.dennischiu.vtc_androidproject.alert;
 
+import com.example.dennischiu.vtc_androidproject.Finger.Function_page;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +19,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Bundle bData = intent.getExtras();
         if(bData.get("title").equals("activity_app"))
         {
-            Intent alarm2cal = new Intent(context, CalActivity.class);
+            Intent alarm2cal = new Intent(context, Function_page.class);
             context.startActivity(alarm2cal);
         }
     }
