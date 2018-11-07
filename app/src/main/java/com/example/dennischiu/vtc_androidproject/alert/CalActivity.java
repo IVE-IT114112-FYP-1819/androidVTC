@@ -21,7 +21,6 @@ public class CalActivity extends AppCompatActivity {
     Information_setting mInformation_setting;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,19 +39,26 @@ public class CalActivity extends AppCompatActivity {
         numB_TextView.setText(String.valueOf(numB));
 
         submit_button.setOnClickListener(v -> {
-            int check = Integer.parseInt(answer_EditText.getText().toString());
-            if (check == answer) {
-                Toast.makeText(CalActivity.this, "Right", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(this,Information_setting.class);
+            String text = answer_EditText.getText().toString();
+            if (text.equals("")) {
+                Toast.makeText(CalActivity.this, "Please Input you answer", Toast.LENGTH_SHORT).show();
+
+                return;
+            }
+            int check = Integer.parseInt(text);
+
+
+            if (check == answer) {
+                Toast.makeText(CalActivity.this, "You are correct!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(this, Information_setting.class);
                 boolean running = true;
-                intent.putExtra("answer",running);
+                intent.putExtra("answer", running);
                 startActivity(intent);
 
-
-
             } else {
-                Toast.makeText(CalActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CalActivity.this, "You answer is Wrong!", Toast.LENGTH_SHORT).show();
             }
 
 
