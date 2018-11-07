@@ -48,20 +48,21 @@ public class Information_setting extends AppCompatActivity {
     EditText mEditText_firstname;
     EditText mEditText_lastname;
     EditText mEditText_phone;
-    ImageButton mButton_save;
 
+    ImageButton mButton_save;
+    ImageButton mImageButton_setting;
     ImageButton mDialogAlert;
 
     Button setTime_button;
     NumberPicker hour_numberPicker, mins_numberPicker;
     int hourSet, minSet;
 
-    private CalActivity mCalActivity;
-
     private static final int LOCATION_UPDATE_MIN_DISTANCE = 1000;
     private static final int LOCATION_UPDATE_MIN_TIME = 50;
     private LocationManager mLocationManager;
     private String messages;
+
+    private String firstname, lastname, phone;//information
 
     private LocationListener mLocationListener = new LocationListener() {
         @Override
@@ -101,17 +102,17 @@ public class Information_setting extends AppCompatActivity {
         mButton_save = findViewById(R.id.btn_save);
         mDialogAlert = findViewById(R.id.btn_dialog_setAlarm);
         mErrorMessage = findViewById(R.id.error_message);
+        mImageButton_setting = findViewById(R.id.ImageButton_setting);
 
         SharedPreferences informotion = getSharedPreferences("Information", MODE_PRIVATE);
-        String firstname = informotion.getString("firstname", "");
-        String lastname = informotion.getString("lastname", "");
-        String phone = informotion.getString("phone", "");
+        firstname = informotion.getString("firstname", "");
+        lastname = informotion.getString("lastname", "");
+        phone = informotion.getString("phone", "");
         mEditText_firstname.setText(firstname);
         mEditText_lastname.setText(lastname);
         mEditText_phone.setText(phone);
 
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        requestPermission();
 
         mButton_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,10 +122,14 @@ public class Information_setting extends AppCompatActivity {
 
                 if (mEditText_phone.getText().length() == 8 && mEditText_firstname.getText().length() != 0
                         && mEditText_lastname.getText().length() != 0) {
-                    sendSMS(phone);
+
                     Toast.makeText(getApplicationContext(), "send sms finished", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+
+        mImageButton_setting.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "TBD", Toast.LENGTH_SHORT).show();
         });
 
         mDialogAlert.setOnClickListener(v -> {
@@ -145,9 +150,9 @@ public class Information_setting extends AppCompatActivity {
             mErrorMessage.setText("Please Enter Your Phone Number");
         } else {
 
-            String firstname = mEditText_firstname.getText().toString().trim();
-            String lastname = mEditText_lastname.getText().toString().trim();
-            String phone = mEditText_phone.getText().toString().trim();
+            firstname = mEditText_firstname.getText().toString().trim();
+            lastname = mEditText_lastname.getText().toString().trim();
+            phone = mEditText_phone.getText().toString().trim();
             SharedPreferences pref = getSharedPreferences("Information", MODE_PRIVATE);
             pref.edit()
                 .putString("firstname", firstname)
@@ -160,13 +165,12 @@ public class Information_setting extends AppCompatActivity {
         }
     }
 
-    public void sendSMS(String phone) {
-        String number = phone;
+    public void sendSMS() {
         SmsManager smsManager = SmsManager.getDefault();
         getCurrentLocation();
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
-                == PackageManager.PERMISSION_GRANTED && !number.isEmpty()) {
-            smsManager.sendTextMessage(number, null, messages + "", null, null);
+                == PackageManager.PERMISSION_GRANTED && !phone.isEmpty()) {
+            smsManager.sendTextMessage(phone, null, messages + "", null, null);
         }
     }
 
@@ -174,8 +178,8 @@ public class Information_setting extends AppCompatActivity {
     public void SetAlertdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 Information_setting.this);
-
         View myview = getLayoutInflater().inflate(R.layout.dialog_alert, null);
+
         setTime_button = (Button) myview.findViewById(R.id.setTime_button);
         hour_numberPicker = (NumberPicker) myview.findViewById(R.id.hour_numberPicker);
         mins_numberPicker = (NumberPicker) myview.findViewById(R.id.mins_numberPicker);
@@ -199,12 +203,14 @@ public class Information_setting extends AppCompatActivity {
             cal.set(Calendar.SECOND, 0);
             add_alarm(Information_setting.this, cal); //註冊鬧鐘
 
-            Intent intent = new Intent(this, Information_setting.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);   //testing reload the layout. if cannot set alarm  , please delete it //yau
+            sendSMS();   //hereeeeeee , send SMS function when Alart is work (testing)
 
             Toast.makeText(this, R.string.Alarm_settings, Toast.LENGTH_SHORT)
                  .show();
+
+            Intent intent = new Intent(this, Information_setting.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
 
         });
 
@@ -269,26 +275,6 @@ public class Information_setting extends AppCompatActivity {
         am.cancel(pi);    //取消鬧鐘，只差在這裡
     }
 
-    private void requestPermission() {
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS};
-        ActivityCompat.requestPermissions(this, permissions, 1);
-        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(false);
-            builder.setTitle("Prompt")
-                   .setMessage("Please open location")
-                   .setPositiveButton("GO to setting", new DialogInterface.OnClickListener() {
-                       @Override
-                       public void onClick(DialogInterface dialog, int which) {
-                           Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                           startActivityForResult(intent, 0);
-                       }
-                   })
-                   .show();
-        } else {
-            Log.d("Test", "Location is opening");
-        }
-    }
 
     private void getCurrentLocation() {
         boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -314,10 +300,6 @@ public class Information_setting extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        requestPermission();
-    }
+
 }
 

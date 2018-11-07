@@ -23,8 +23,8 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="f2f2f2" />
-                                                <entry key="paddingPercent" value="15" />
+                                                <entry key="color" value="696969" />
+                                                <entry key="paddingPercent" value="10" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -35,7 +35,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_timer_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_info_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -45,9 +45,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="5a85d4" />
-                                      <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="time_button" />
+                                      <entry key="backgroundColor" value="4f4c4d" />
+                                      <entry key="iconShape" value="NONE" />
+                                      <entry key="outputName" value="info" />
                                     </map>
                                   </option>
                                 </PersistentState>
