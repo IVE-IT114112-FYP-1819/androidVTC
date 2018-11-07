@@ -20,6 +20,8 @@ public class CalActivity extends AppCompatActivity {
 
     Information_setting mInformation_setting;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,11 @@ public class CalActivity extends AppCompatActivity {
                 Toast.makeText(CalActivity.this, "Right", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this,Information_setting.class);
+                boolean running = true;
+                intent.putExtra("answer",running);
                 startActivity(intent);
+
+
 
             } else {
                 Toast.makeText(CalActivity.this, "Wrong", Toast.LENGTH_SHORT).show();

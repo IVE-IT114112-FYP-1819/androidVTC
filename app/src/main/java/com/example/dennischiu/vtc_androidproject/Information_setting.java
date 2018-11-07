@@ -64,6 +64,8 @@ public class Information_setting extends AppCompatActivity {
 
     private String firstname, lastname, phone;//information
 
+
+
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
@@ -95,6 +97,7 @@ public class Information_setting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_setting);
+
 
         mEditText_firstname = findViewById(R.id.et_firstname);
         mEditText_lastname = findViewById(R.id.et_lastname);
@@ -136,7 +139,15 @@ public class Information_setting extends AppCompatActivity {
             SetAlertdialog();
         });
 
+        Intent intentAnswer = getIntent();
+        boolean running = intentAnswer.getBooleanExtra("answer", false);
+        if(running){
+            SetAlertdialog();
+        }
+
     }
+
+
 
     public void inputInformationCheck() {
         if (mEditText_firstname.getText().length() == 0) {
