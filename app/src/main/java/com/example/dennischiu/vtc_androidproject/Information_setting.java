@@ -2,6 +2,7 @@ package com.example.dennischiu.vtc_androidproject;
 
 import com.example.dennischiu.vtc_androidproject.alert.AlarmReceiver;
 import com.example.dennischiu.vtc_androidproject.alert.BootUpReceiver;
+import com.example.dennischiu.vtc_androidproject.alert.CalActivity;
 import com.example.dennischiu.vtc_androidproject.alert.SetAlarm;
 
 import org.w3c.dom.Text;
@@ -55,6 +56,8 @@ public class Information_setting extends AppCompatActivity {
     NumberPicker hour_numberPicker, mins_numberPicker;
     int hourSet, minSet;
 
+    private CalActivity mCalActivity;
+
     private static final int LOCATION_UPDATE_MIN_DISTANCE = 1000;
     private static final int LOCATION_UPDATE_MIN_TIME = 50;
     private LocationManager mLocationManager;
@@ -79,6 +82,7 @@ public class Information_setting extends AppCompatActivity {
         @Override
         public void onProviderEnabled(String p) {
         }
+
 
         @Override
         public void onProviderDisabled(String s) {

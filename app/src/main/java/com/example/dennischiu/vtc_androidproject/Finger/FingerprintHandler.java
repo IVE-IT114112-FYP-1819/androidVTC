@@ -2,12 +2,10 @@ package com.example.dennischiu.vtc_androidproject.Finger;
 
 
 import com.example.dennischiu.vtc_androidproject.R;
-import com.example.dennischiu.vtc_androidproject.Second_page;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;

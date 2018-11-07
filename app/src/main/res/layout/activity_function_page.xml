@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp"
-        android:text="Fingerprint"
+        android:text="Touch ID"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_title_big"
+        android:textSize="@dimen/text_title_big_30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fingerprintImage" />
@@ -84,7 +84,7 @@
         android:layout_height="3dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@id/tv_description"
+        app:layout_constraintBottom_toBottomOf="@id/paraLabel"
         app:layout_constraintBottom_toTopOf="@id/tv_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -3,7 +3,6 @@ package com.example.dennischiu.vtc_androidproject.Finger;
 
 import com.example.dennischiu.vtc_androidproject.Information_setting;
 import com.example.dennischiu.vtc_androidproject.R;
-import com.example.dennischiu.vtc_androidproject.Second_page;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -41,7 +40,6 @@ public class Function_page extends AppCompatActivity {
     TextView mTextView_Skip;
     TextView mTextView_Next;
 
-
     private TextView mParaLabel;
     private ImageView mFingerprintImage;
 
@@ -68,7 +66,7 @@ public class Function_page extends AppCompatActivity {
 
         mTextView_Next.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.setClass(Function_page.this, Second_page.class);
+            intent.setClass(Function_page.this, Information_setting.class);
             startActivity(intent);
         });
 

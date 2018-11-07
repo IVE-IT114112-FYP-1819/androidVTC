@@ -21,7 +21,6 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,19 +34,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Status" />
 
-        <activity android:name=".TimePicker.MainTimePicker" />
 
-        <receiver android:name=".TimePicker.AlertReceiver" />
-
-        <activity
-            android:name=".Second_page"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Status" />
-
-        <activity
-            android:name=".Third_page"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Status" />
 
         <activity
             android:name=".Information_setting"
@@ -71,7 +58,10 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".alert.CalActivity"></activity>
+        <activity android:name=".alert.CalActivity">
+
+
+        </activity>
 
     </application>
 
