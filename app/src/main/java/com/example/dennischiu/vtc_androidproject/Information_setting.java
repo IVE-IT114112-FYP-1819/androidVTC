@@ -4,6 +4,7 @@ import com.example.dennischiu.vtc_androidproject.alert.AlarmReceiver;
 import com.example.dennischiu.vtc_androidproject.alert.BootUpReceiver;
 import com.example.dennischiu.vtc_androidproject.alert.CalActivity;
 import com.example.dennischiu.vtc_androidproject.alert.SetAlarm;
+import com.example.dennischiu.vtc_androidproject.dialog_apps.dialog_apps_information;
 
 import org.w3c.dom.Text;
 
@@ -50,7 +51,8 @@ public class Information_setting extends AppCompatActivity {
     EditText mEditText_phone;
 
     ImageButton mButton_save;
-    ImageButton mImageButton_setting;
+    ImageButton mImageButton_exit;
+    ImageButton mImageButton_info;
     ImageButton mDialogAlert;
 
     Button setTime_button;
@@ -62,8 +64,8 @@ public class Information_setting extends AppCompatActivity {
     private LocationManager mLocationManager;
     private String messages;
 
-    private String firstname, lastname, phone;//information
 
+    private String firstname, lastname, phone;//information
 
 
     private LocationListener mLocationListener = new LocationListener() {
@@ -98,14 +100,15 @@ public class Information_setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_setting);
 
-
         mEditText_firstname = findViewById(R.id.et_firstname);
         mEditText_lastname = findViewById(R.id.et_lastname);
         mEditText_phone = findViewById(R.id.et_phone);
         mButton_save = findViewById(R.id.btn_save);
         mDialogAlert = findViewById(R.id.btn_dialog_setAlarm);
         mErrorMessage = findViewById(R.id.error_message);
-        mImageButton_setting = findViewById(R.id.ImageButton_setting);
+
+        mImageButton_exit = findViewById(R.id.btn_exit);
+        mImageButton_info = findViewById(R.id.ImageButton_info);
 
         SharedPreferences informotion = getSharedPreferences("Information", MODE_PRIVATE);
         firstname = informotion.getString("firstname", "");
@@ -131,8 +134,16 @@ public class Information_setting extends AppCompatActivity {
             }
         });
 
-        mImageButton_setting.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "TBD", Toast.LENGTH_SHORT).show();
+        mImageButton_exit.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        mImageButton_info.setOnClickListener(v ->{
+            dialog_apps_information.newInstance().show(getSupportFragmentManager(), dialog_apps_information.TAG);
+
         });
 
         mDialogAlert.setOnClickListener(v -> {
@@ -140,14 +151,12 @@ public class Information_setting extends AppCompatActivity {
         });
 
         Intent intentAnswer = getIntent();
-        boolean running = intentAnswer.getBooleanExtra("answer",false);
-        if(running){
+        boolean running = intentAnswer.getBooleanExtra("answer", false);
+        if (running) {
             SetAlertdialog();
         }
 
     }
-
-
 
     public void inputInformationCheck() {
         if (mEditText_firstname.getText().length() == 0) {

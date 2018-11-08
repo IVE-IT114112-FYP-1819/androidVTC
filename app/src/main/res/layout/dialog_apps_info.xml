@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/spacing_large"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_large"
+    tools:context="dialog_apps.dialog_apps_information">
+
+
+    <TextView
+        android:id="@+id/txtabout_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:gravity="center"
+        android:text="About Us"
+        android:textColor="@color/flower_blue"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/txtcontent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/spacing_normal"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="@dimen/spacing_large"-->
+        <!--android:textSize="@dimen/text_body"-->
+        <!--android:textStyle="bold" />-->
+
+
+    <ListView
+        android:id="@+id/lslistview"
+        android:layout_width="match_parent"
+        android:layout_height="326dp" />
+
+    <Button
+        android:id="@+id/btn_reset_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@drawable/bg_button"
+        android:text="OK"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold" />
+
+</LinearLayout>
