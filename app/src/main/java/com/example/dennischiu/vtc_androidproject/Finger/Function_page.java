@@ -56,20 +56,7 @@ public class Function_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function_page);
 
-        mTextView_Skip = findViewById(R.id.tv_Skip);
-        mTextView_Next = findViewById(R.id.tv_next);
 
-        mTextView_Skip.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setClass(Function_page.this, Information_setting.class);
-            startActivity(intent);
-        });
-
-        mTextView_Next.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setClass(Function_page.this, Information_setting.class);
-            startActivity(intent);
-        });
 
         mFingerprintImage = (ImageView) findViewById(R.id.fingerprintImage);
 

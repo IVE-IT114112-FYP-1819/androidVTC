@@ -165,10 +165,10 @@
         </android.support.constraint.ConstraintLayout>
 
         <ImageButton
-            android:id="@+id/ImageButton_setting"
+            android:id="@+id/ImageButton_info"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@mipmap/setting"
+            android:background="@mipmap/info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -177,12 +177,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="About Apps"
             android:textSize="@dimen/text_body"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ImageButton_setting"
-            app:layout_constraintStart_toStartOf="@+id/ImageButton_setting"
-            app:layout_constraintTop_toBottomOf="@+id/ImageButton_setting" />
+            app:layout_constraintEnd_toEndOf="@+id/ImageButton_info"
+            app:layout_constraintStart_toStartOf="@+id/ImageButton_info"
+            app:layout_constraintTop_toBottomOf="@+id/ImageButton_info" />
 
         <ImageButton
             android:id="@+id/btn_save"
@@ -190,7 +190,7 @@
             android:layout_height="70dp"
             android:background="@mipmap/add"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ImageButton_setting"
+            app:layout_constraintEnd_toStartOf="@+id/ImageButton_info"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraint_layout" />
 
@@ -205,24 +205,24 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_save" />
 
         <ImageButton
-            android:id="@+id/btn_more"
+            android:id="@+id/btn_exit"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@mipmap/info"
+            android:background="@mipmap/exit_app"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ImageButton_setting"
+            app:layout_constraintStart_toEndOf="@+id/ImageButton_info"
             app:layout_constraintTop_toBottomOf="@+id/constraint_layout" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About Apps"
+            android:text="Exit"
             android:textSize="@dimen/text_body"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/btn_more"
-            app:layout_constraintStart_toStartOf="@+id/btn_more"
-            app:layout_constraintTop_toBottomOf="@+id/btn_more" />
+            app:layout_constraintEnd_toEndOf="@+id/btn_exit"
+            app:layout_constraintStart_toStartOf="@+id/btn_exit"
+            app:layout_constraintTop_toBottomOf="@+id/btn_exit" />
 
     </android.support.constraint.ConstraintLayout>
 
