@@ -2,11 +2,7 @@ package com.example.dennischiu.vtc_androidproject;
 
 import com.example.dennischiu.vtc_androidproject.alert.AlarmReceiver;
 import com.example.dennischiu.vtc_androidproject.alert.BootUpReceiver;
-import com.example.dennischiu.vtc_androidproject.alert.CalActivity;
-import com.example.dennischiu.vtc_androidproject.alert.SetAlarm;
 import com.example.dennischiu.vtc_androidproject.dialog_apps.dialog_apps_information;
-
-import org.w3c.dom.Text;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -15,14 +11,12 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -50,6 +44,7 @@ public class Information_setting extends AppCompatActivity {
     EditText mEditText_lastname;
     EditText mEditText_phone;
 
+    Boolean smsOrAlarm;
     ImageButton mButton_save;
     ImageButton mImageButton_exit;
     ImageButton mImageButton_info;
@@ -66,6 +61,7 @@ public class Information_setting extends AppCompatActivity {
 
 
     private String firstname, lastname, phone;//information
+
 
 
     private LocationListener mLocationListener = new LocationListener() {
@@ -99,6 +95,16 @@ public class Information_setting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_setting);
+
+//        int methodRun = 0;
+//        Intent intentsms = getIntent();
+//        methodRun = intentsms.getIntExtra("method",0);
+//
+//        Toast.makeText(this,Integer.toString(methodRun),Toast.LENGTH_LONG).show();
+//        if(methodRun == 1){
+//            Toast.makeText(this, "Call method", Toast.LENGTH_SHORT).show();
+//            sendSMS();
+//        }
 
         mEditText_firstname = findViewById(R.id.et_firstname);
         mEditText_lastname = findViewById(R.id.et_lastname);
@@ -150,11 +156,11 @@ public class Information_setting extends AppCompatActivity {
             SetAlertdialog();
         });
 
-        Intent intentAnswer = getIntent();
-        boolean running = intentAnswer.getBooleanExtra("answer", false);
-        if (running) {
-            SetAlertdialog();
-        }
+//        Intent intentAnswer = getIntent();
+//        boolean running = intentAnswer.getBooleanExtra("answer", false);
+//        if (running) {
+//            SetAlertdialog();
+//        }
 
     }
 
@@ -185,14 +191,66 @@ public class Information_setting extends AppCompatActivity {
         }
     }
 
-    public void sendSMS() {
-        SmsManager smsManager = SmsManager.getDefault();
-        getCurrentLocation();
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
-                == PackageManager.PERMISSION_GRANTED && !phone.isEmpty()) {
-            smsManager.sendTextMessage(phone, null, messages + "", null, null);
+//    @Override
+//    public void onResume() {
+//        super.onResume();  // Always call the superclass method first
+//
+//        String methodRun = "nothing";
+//        Intent intentsms = getIntent();
+//        methodRun = intentsms.getStringExtra("method");
+//        Toast.makeText(this,methodRun, Toast.LENGTH_SHORT).show();
+//        if(methodRun != null) {
+//            if(methodRun.equals("sendSMS")){
+//                Toast.makeText(this, "Call method", Toast.LENGTH_SHORT).show();
+//                sendSMS();
+//            }
+//        }
+//
+//    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String intentRun = "nothing";
+        setIntent(intent);
+        intentRun = intent.getStringExtra("running");
+        smsOrAlarm = intent.getBooleanExtra("smsOrAlarm",true);
+
+        if(intentRun != null) {
+            if(smsOrAlarm) {
+                if (intentRun.equals("CalCorrect")) {
+                    SetAlertdialog();
+                    smsOrAlarm = true;
+                }
+            }
         }
+
+        if (intentRun != null) {
+            if(!smsOrAlarm) {
+                if (intentRun.equals("sendSMS")) {
+                    Toast.makeText(this, phone, Toast.LENGTH_SHORT).show();
+                    SmsManager smsManager = SmsManager.getDefault();
+                    getCurrentLocation();
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
+                            == PackageManager.PERMISSION_GRANTED && !phone.isEmpty()) {
+                        smsManager.sendTextMessage(phone, null, messages + "", null, null);
+                    }
+                }
+            }
+
+        }
+
+
     }
+
+//    public void sendSMS() {
+//        SmsManager smsManager = SmsManager.getDefault();
+//        getCurrentLocation();
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
+//                == PackageManager.PERMISSION_GRANTED && !phone.isEmpty()) {
+//            smsManager.sendTextMessage(phone, null, messages + "", null, null);
+//        }
+//    }
 
     @SuppressLint("SetTextI18n")
     public void SetAlertdialog() {
@@ -223,7 +281,6 @@ public class Information_setting extends AppCompatActivity {
             cal.set(Calendar.SECOND, 0);
             add_alarm(Information_setting.this, cal); //註冊鬧鐘
 
-            sendSMS();   //hereeeeeee , send SMS function when Alart is work (testing)
 
             Toast.makeText(this, R.string.Alarm_settings, Toast.LENGTH_SHORT)
                  .show();

@@ -7,12 +7,16 @@ import com.example.dennischiu.vtc_androidproject.alert.CalActivity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
@@ -44,19 +48,34 @@ public class Function_page extends AppCompatActivity {
     private TextView mParaLabel;
     private ImageView mFingerprintImage;
 
+    static Handler handler;
+    static Vibrator v;
+
+    public static Activity fp;
+
     private FingerprintManager fingerprintManager;
     private KeyguardManager keyguardManager;
+
+    MediaPlayer musicPlay;
 
     private KeyStore keyStore;
     private Cipher cipher;
     private String KEY_NAME = "AndroidKey";
+
+    Function_page mFunction_page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function_page);
 
+        fp = this;
 
+        musicPlay = MediaPlayer.create(this, R.raw.entire);
+        musicPlay.start();
+
+        v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        v.vibrate(60000);
 
         mFingerprintImage = (ImageView) findViewById(R.id.fingerprintImage);
 
@@ -98,7 +117,7 @@ public class Function_page extends AppCompatActivity {
                 if (cipherInit()) {
 
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this,this);
+                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this, this);
                     fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
 
                 }
@@ -106,6 +125,20 @@ public class Function_page extends AppCompatActivity {
             }
 
         }
+
+        Intent intent2infor = new Intent(this, Information_setting.class);
+
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                intent2infor.putExtra("running", "sendSMS");
+                intent2infor.putExtra("smsOrAlarm", false);
+                musicPlay.stop();
+                v.cancel();
+                Function_page.this.startActivity(intent2infor);
+            }
+        }, 60000);
+
 
     }
 
@@ -174,6 +207,8 @@ public class Function_page extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(Function_page.this, CalActivity.class);
         startActivity(intent);
+        musicPlay.stop();
+        v.cancel();
     }
 
 

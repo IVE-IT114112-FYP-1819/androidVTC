@@ -21,15 +21,15 @@ public class dialog_apps_information extends DialogFragment {
     ListView lv;
     ArrayAdapter<String> adapter;
     String[] content = {
-            "1.eeetkdjskfhjksdhjfkhkdhjgk",
-            "2.Ssdgfdsgdfs",
-            "3.sdfae"
+            "1.Input your information (FirstName, LastName and your emergency contact person)",
+            "\n2.Please remember to click Save button to save you data ",
+            "\n3.Click the Clock button to set up next alarm time, and click SET button",
+            "\n4.When time up, please use the 'Touch ID' to pass the checking. ",
+            "\n5.After 'Touch ID' checking, solve the simple mathematics question.",
+            "\n6.After solve mathematics question, set the next alarm time please."
     };
 
-
-
     public static final String TAG = dialog_apps_information.class.getSimpleName();
-
 
 
     @Override
