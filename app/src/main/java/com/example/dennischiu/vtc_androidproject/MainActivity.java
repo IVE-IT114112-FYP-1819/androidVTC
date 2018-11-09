@@ -20,7 +20,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LocationManager mLocationManager;
+
     private static final int GOTO_MAIN_ACTIVITY = 0;
 
 
@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 4000);
 
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        requestPermission();
+
 
     }
 
@@ -52,30 +51,4 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void requestPermission() {
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS};
-        ActivityCompat.requestPermissions(this, permissions, 1);
-        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(false);
-            builder.setTitle("Prompt")
-                   .setMessage("Please open location")
-                   .setPositiveButton("GO to setting", new DialogInterface.OnClickListener() {
-                       @Override
-                       public void onClick(DialogInterface dialog, int which) {
-                           Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                           startActivityForResult(intent, 0);
-                       }
-                   })
-                   .show();
-        } else {
-            Log.d("Test", "Location is opening");
-        }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        requestPermission();
-    }
 }

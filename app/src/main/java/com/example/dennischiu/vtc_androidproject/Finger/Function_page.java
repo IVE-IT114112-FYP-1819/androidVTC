@@ -139,7 +139,6 @@ public class Function_page extends AppCompatActivity {
             }
         }, 60000);
 
-
     }
 
     @TargetApi(Build.VERSION_CODES.M)

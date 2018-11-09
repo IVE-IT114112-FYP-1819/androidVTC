@@ -11,12 +11,14 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +41,9 @@ import static android.support.constraint.Constraints.TAG;
 
 public class Information_setting extends AppCompatActivity {
 
+
+    private LocationManager mLocationManager;
+
     TextView mErrorMessage;
     EditText mEditText_firstname;
     EditText mEditText_lastname;
@@ -56,7 +61,6 @@ public class Information_setting extends AppCompatActivity {
 
     private static final int LOCATION_UPDATE_MIN_DISTANCE = 1000;
     private static final int LOCATION_UPDATE_MIN_TIME = 50;
-    private LocationManager mLocationManager;
     private String messages;
 
 
@@ -115,6 +119,9 @@ public class Information_setting extends AppCompatActivity {
         mImageButton_exit = findViewById(R.id.btn_exit);
         mImageButton_info = findViewById(R.id.ImageButton_info);
 
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        requestPermission();
         SharedPreferences informotion = getSharedPreferences("Information", MODE_PRIVATE);
         firstname = informotion.getString("firstname", "");
         lastname = informotion.getString("lastname", "");
@@ -240,9 +247,6 @@ public class Information_setting extends AppCompatActivity {
 
 
     }
-
-
-
 
 //    public void sendSMS() {
 //        SmsManager smsManager = SmsManager.getDefault();
@@ -376,6 +380,33 @@ public class Information_setting extends AppCompatActivity {
             Log.d("Test", "Location is null");
             messages = "Can't get lcation";
         }
+    }
+
+    private void requestPermission() {
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS};
+        ActivityCompat.requestPermissions(this, permissions, 1);
+        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+            builder.setTitle("Prompt")
+                   .setMessage("Please open location")
+                   .setPositiveButton("GO to setting", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                           startActivityForResult(intent, 0);
+                       }
+                   })
+                   .show();
+        } else {
+            Log.d("Test", "Location is opening");
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        requestPermission();
     }
 
 
