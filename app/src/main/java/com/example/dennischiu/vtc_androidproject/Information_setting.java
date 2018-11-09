@@ -63,12 +63,11 @@ public class Information_setting extends AppCompatActivity {
     private String firstname, lastname, phone;//information
 
 
-
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
             if (location != null) {
-                messages =
+                messages = lastname + firstname + " is no response, now he/she is in: " +
                         "https://www.google.com/maps/search/" + location.getLatitude() + "," + location.getLongitude();
             } else {
                 Log.d("Test", "Location is null");
@@ -147,7 +146,7 @@ public class Information_setting extends AppCompatActivity {
             startActivity(intent);
         });
 
-        mImageButton_info.setOnClickListener(v ->{
+        mImageButton_info.setOnClickListener(v -> {
             dialog_apps_information.newInstance().show(getSupportFragmentManager(), dialog_apps_information.TAG);
 
         });
@@ -214,10 +213,10 @@ public class Information_setting extends AppCompatActivity {
         String intentRun = "nothing";
         setIntent(intent);
         intentRun = intent.getStringExtra("running");
-        smsOrAlarm = intent.getBooleanExtra("smsOrAlarm",true);
+        smsOrAlarm = intent.getBooleanExtra("smsOrAlarm", true);
 
-        if(intentRun != null) {
-            if(smsOrAlarm) {
+        if (intentRun != null) {
+            if (smsOrAlarm) {
                 if (intentRun.equals("CalCorrect")) {
                     SetAlertdialog();
                     smsOrAlarm = true;
@@ -226,9 +225,8 @@ public class Information_setting extends AppCompatActivity {
         }
 
         if (intentRun != null) {
-            if(!smsOrAlarm) {
+            if (!smsOrAlarm) {
                 if (intentRun.equals("sendSMS")) {
-                    Toast.makeText(this, phone, Toast.LENGTH_SHORT).show();
                     SmsManager smsManager = SmsManager.getDefault();
                     getCurrentLocation();
                     if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
@@ -242,6 +240,9 @@ public class Information_setting extends AppCompatActivity {
 
 
     }
+
+
+
 
 //    public void sendSMS() {
 //        SmsManager smsManager = SmsManager.getDefault();
@@ -280,7 +281,6 @@ public class Information_setting extends AppCompatActivity {
             cal.add(Calendar.MINUTE, minSet);
             cal.set(Calendar.SECOND, 0);
             add_alarm(Information_setting.this, cal); //註冊鬧鐘
-
 
             Toast.makeText(this, R.string.Alarm_settings, Toast.LENGTH_SHORT)
                  .show();
@@ -370,7 +370,8 @@ public class Information_setting extends AppCompatActivity {
             location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         }
         if (location != null) {
-            messages = "https://www.google.com/maps/search/" + location.getLatitude() + "," + location.getLongitude();
+            messages = lastname + firstname + " is no response, now he/she is in: " +
+                    "https://www.google.com/maps/search/" + location.getLatitude() + "," + location.getLongitude();
         } else {
             Log.d("Test", "Location is null");
             messages = "Can't get lcation";
